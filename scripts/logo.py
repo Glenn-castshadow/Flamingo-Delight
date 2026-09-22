@@ -19,8 +19,14 @@ wide = key("assets/_src/logo-wide-codex.png")
 wide.thumbnail((720, 720), Image.LANCZOS)
 wide.save("assets/logo-wide.webp", quality=90)
 
+stacked = key("assets/_src/logo-stacked-codex.png")
+big = stacked.copy()
+big.thumbnail((640, 640), Image.LANCZOS)
+big.save("assets/logo-stacked.webp", quality=90)
+print("stacked", big.size)
+
 # favicon: just the flamingo, sun and palm from the stacked mark
-mark = key("assets/_src/logo-stacked-codex.png")
+mark = stacked
 w, h = mark.size
 mark = mark.crop((int(w * 0.18), 0, int(w * 0.82), int(h * 0.6)))
 side = max(mark.size)

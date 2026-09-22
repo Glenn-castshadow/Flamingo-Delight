@@ -11,15 +11,15 @@
   <link rel="icon" href="assets/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/icon-180.png">
   <link rel="stylesheet" href="tokens.css?v=5">
-  <link rel="stylesheet" href="styles.css?v=7">
+  <link rel="stylesheet" href="styles.css?v=20">
 </head>
 <body>
 
 <p class="banner">Sample homepage. The shop is a mock-up and nothing here is for sale yet.</p>
 
-<header class="bar">
+<header class="masthead">
   <div class="wrap">
-    <a class="logo" href="#"><img src="assets/logo-wide.webp" width="720" height="231" alt="Flamingo Delight"></a>
+    <a class="logo" href="#"><img src="assets/logo-stacked.webp" width="632" height="640" alt="Flamingo Delight" fetchpriority="high"></a>
     <nav aria-label="Main">
       <a href="#shop">Shop</a>
       <a href="#stories">Stories</a>
@@ -27,6 +27,18 @@
     </nav>
   </div>
 </header>
+
+<!-- slides in once the masthead has scrolled away; inert until then -->
+<div class="bar" inert aria-hidden="true">
+  <div class="wrap">
+    <a class="logo" href="#"><img src="assets/logo-wide.webp" width="720" height="231" alt="Flamingo Delight"></a>
+    <nav aria-label="Main, compact">
+      <a href="#shop">Shop</a>
+      <a href="#stories">Stories</a>
+      <a href="#about">About</a>
+    </nav>
+  </div>
+</div>
 
 <main>
   <section class="wrap collage" aria-label="Welcome">
@@ -51,7 +63,7 @@
 
   <div class="awning" role="presentation"></div>
 
-  <section class="rail" id="shop" aria-labelledby="shop-h">
+  <section class="rail rail--shop" id="shop" aria-labelledby="shop-h">
     <div class="wrap">
       <div class="rail-head">
         <div>
@@ -108,17 +120,17 @@
       </div>
       <div class="stories">
         <article class="story story--lead">
-          <img src="assets/story-bathroom.jpg" width="1400" height="1050" loading="lazy" alt="A 1950s bathroom tiled in pale pink, with a pink tub, sink and toilet.">
+          <img src="assets/story-bathroom.jpg" width="1400" height="1050" loading="lazy" alt="A 1950s bathroom in pink tile with a black trim band: pink tub, pedestal sink and toilet, white towels, daylight from a window.">
           <h3><a href="#stories">In defense of the pink bathroom</a></h3>
           <p>Mamie pink tile, a tub to match and a black trim line holding it all together. It’s a whole mood, and nobody should rip it out.</p>
         </article>
         <article class="story">
-          <img src="assets/story-tree.jpg" width="1400" height="1050" loading="lazy" alt="A silver tinsel Christmas tree beside a four-color lamp in a dark 1960s living room.">
+          <img src="assets/story-tree.jpg" width="1400" height="1050" loading="lazy" alt="A silver tinsel Christmas tree glowing pink and turquoise from a colored floor spotlight, in a 1960s living room at dusk with palms outside.">
           <h3><a href="#stories">The tree you couldn’t string lights on</a></h3>
           <p>Aluminum trees conduct electricity, so they got a spinning color wheel instead.</p>
         </article>
         <article class="story">
-          <img src="assets/story-sign.jpg" width="1400" height="1050" loading="lazy" alt="A googie motel sign at dusk: a curving bulb-lit pole, a neon starburst and a turquoise MOTEL arrow.">
+          <img src="assets/story-sign.jpg" style="object-position: 72% 50%" width="1400" height="1050" loading="lazy" alt="A googie motel sign at blue hour: a curving bulb-lit arrow, a neon starburst and blank panels, beside two palm silhouettes.">
           <h3><a href="#stories">How to read a googie sign</a></h3>
           <p>Starbursts, boomerangs and arrows. A field guide to signs built to be read from a moving car.</p>
         </article>
@@ -173,5 +185,15 @@
   </div>
 </footer>
 
+<script>
+  // Swap to the compact bar once the big stacked logo has scrolled out of view.
+  const bar = document.querySelector('.bar');
+  new IntersectionObserver(([entry]) => {
+    const show = !entry.isIntersecting;
+    bar.classList.toggle('is-shown', show);
+    bar.inert = !show;
+    bar.toggleAttribute('aria-hidden', !show);
+  }).observe(document.querySelector('.masthead'));
+</script>
 </body>
 </html>

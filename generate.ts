@@ -18,6 +18,10 @@ const PRODUCT =
 const SUNNY =
   "bright sunny pastel editorial travel photograph, Palm Springs, saturated candy pink, aqua and sunshine yellow, crisp midday sun, clear blue sky, no people, photorealistic, no text, no letters, no signs, no logos, no watermark";
 
+// Story images: the first Kodachrome set read as amateur snapshots (flat light, tilted, muddy).
+const EDITORIAL =
+  "professional architectural and interior editorial photograph for a design magazine, medium format camera, level verticals, carefully composed, balanced exposure with clean highlights and open shadows, rich but natural colour, sharp focus, no people, photorealistic, no text, no letters, no logos, no watermark";
+
 const img = (aspect_ratio: string, prompt: string) =>
   ({ aspect_ratio, resolution: "1080p", batch_size: 1, enhance_prompt: false, prompt });
 
@@ -31,9 +35,10 @@ const JOBS: { file: string; input: Record<string, unknown> }[] = [
   // A bookends version came back with garbled lettering on the book spines; a planter has nothing to letter.
   { file: "shop-planter.png", input: img("1:1", `A small square white glazed ceramic planter shaped like a mid-century breeze block, its sides pierced with a four-petal cut-out pattern, holding one round golden barrel cactus, standing on a pale pink shelf against a turquoise wall. ${PRODUCT}`) },
   { file: "shop-keyfob.png", input: img("1:1", `Three vintage diamond-shaped plastic motel key fobs in pink, turquoise and butter yellow, completely blank with no printing, each on a small brass ring with an old brass door key, lying on white terrazzo. ${PRODUCT}`) },
-  { file: "story-bathroom.png", input: img("4:3", `A 1958 bathroom tiled floor to ceiling in pale pink square ceramic tile with one black tile trim band, a pink bathtub, pink pedestal sink and pink toilet, chrome taps, a small frosted window letting in bright daylight, a fluffy pink bath mat. ${LOOK}`) },
-  { file: "story-tree.png", input: img("4:3", `A silver aluminum tinsel Christmas tree in a 1962 living room at night, lit by a rotating color wheel floor lamp throwing pink, turquoise and amber light across the silver branches, a low walnut sofa, a shag rug, sliding glass doors to a dark patio. 1960s Kodachrome slide photograph, film grain, photorealistic, no text, no letters, no logos, no watermark`) },
-  { file: "story-sign.png", input: img("4:3", `A tall googie roadside motel sign at dusk against a pink and orange desert sky: a boomerang-shaped arm, a starburst on top, a big arrow outlined in light bulbs, neon tubing glowing pink and turquoise, the sign panels completely blank and empty with no letters, two palm tree silhouettes. 1960s Kodachrome slide photograph, film grain, photorealistic, absolutely no text, no letters, no words, no numbers, no logos anywhere`) },
+  { file: "story-bathroom.png", input: img("4:3", `Straight-on symmetrical view into a restored 1958 bathroom tiled floor to ceiling in soft pink square tile with one black tile trim band, a pink bathtub set centred beneath a small window, a pink pedestal sink and pink toilet either side, polished chrome taps, a fluffy pink bath mat, soft even daylight from the window, fresh white towels. ${EDITORIAL}`) },
+  // Pass 1 drew a frosted fir, pass 2 bare crumpled foil sticks; the real thing is fluffy foil bottle-brushes in a cone.
+  { file: "story-tree.png", input: img("4:3", `A classic 1960s aluminum Christmas tree, full cone shape, made of tiers of fluffy bottle-brush branches of fine shimmering silver aluminum foil strands, each branch tapering to a sparkly silver pom-pom tip, bright mirror-like metallic sheen, no ornaments and no string lights. A color wheel spotlight on the floor bathes the silver tree in rose pink and turquoise light so it glows. Styled 1962 living room at dusk, a low walnut sofa, sliding glass doors behind with palm silhouettes against a violet sky. ${EDITORIAL}`) },
+  { file: "story-sign.png", input: img("4:3", `A tall googie roadside motel sign at blue hour, placed on the right third of the frame against a clean gradient sky from deep blue to soft pink, a boomerang arm, a starburst on top and a big arrow outlined in glowing bulbs, pink and turquoise neon tubing, the sign panels completely blank, two tall palm silhouettes on the left, crisp and sharp. ${EDITORIAL} Absolutely no letters, words or numbers anywhere`) },
 ];
 
 await mkdir("assets/_raw", { recursive: true });
