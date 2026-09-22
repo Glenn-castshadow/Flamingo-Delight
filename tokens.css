@@ -1,0 +1,55 @@
+/* Flamingo Delight tokens. The page references these by name only. */
+:root {
+  /* taken from Codex's logo: coral #ef6262, teal #185054, sun #ffd1c3, cream #fdfcf5 */
+  --color-paper: oklch(97% 0.016 50);
+  --color-paper-2: oklch(93.5% 0.035 40);
+  --color-card: oklch(99% 0.009 100);
+  --color-ink: oklch(29% 0.05 202);
+  --color-ink-2: oklch(39.7% 0.057 202);
+  --color-muted: oklch(50% 0.04 202);
+  --color-rule: oklch(85% 0.04 40);
+  --color-accent: oklch(67.5% 0.175 23);
+  --color-accent-deep: oklch(55% 0.17 23);
+  --color-accent-ink: oklch(99% 0.009 100);
+  --color-pool: oklch(78% 0.11 198);
+  --color-pool-deep: oklch(62% 0.1 200);
+  /* moodboard blocks: pink stucco, sunshine yellow */
+  --color-wall: oklch(84% 0.075 12);
+  --color-wall-deep: oklch(76% 0.1 12);
+  --color-sun: oklch(91% 0.13 95);
+  --color-concrete: oklch(94% 0.008 80);
+  --color-mortar: oklch(84% 0.012 80);
+  --color-focus: oklch(55% 0.2 23);
+  --color-shadow: oklch(40% 0.08 23 / 0.18);
+
+  --font-display: "Bebas Neue", "Arial Narrow", sans-serif;
+  --font-body: "Figtree", "Segoe UI", sans-serif;
+
+  --text-sm: 0.875rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.25rem;
+  --text-xl: clamp(1.4rem, 1.2rem + 0.8vw, 1.75rem);
+  --text-2xl: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+  --text-display: clamp(2.5rem, 1.6rem + 4vw, 4.75rem);
+
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 5rem;
+  --space-4xl: 7rem;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-pill: 999px;
+  --rule-hair: 1px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in: cubic-bezier(0.55, 0, 1, 0.45);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 150ms;
+  --dur-base: 240ms;
+}

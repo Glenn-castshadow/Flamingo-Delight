@@ -1,0 +1,13 @@
+{
+  "name": "flamingo-delight",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "art": "node --env-file=C:/Working_Projects/Homelab_Design/.env.local generate.ts",
+    "shrink": "magick mogrify -path assets -format jpg -resize 1400x -quality 78 -strip assets/_raw/*.png"
+  },
+  "dependencies": {
+    "@higgsfield/client": "^0.2.6"
+  }
+}
