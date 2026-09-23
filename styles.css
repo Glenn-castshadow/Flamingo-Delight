@@ -92,7 +92,7 @@ h1, h2, h3 {
 
 @media (max-width: 30rem) {
   .masthead nav, .bar nav { gap: var(--space-md); font-size: var(--text-base); }
-  .masthead nav a[href="#about"], .bar nav a[href="#about"] { display: none; }
+  .masthead nav a[href="about.html"], .bar nav a[href="about.html"] { display: none; }
   .bar .logo img { height: 3rem; }
 }
 
@@ -197,16 +197,16 @@ main { --overhang: 3rem; } /* on main: both the shop and the stories band read i
 /* cards are bottom-aligned and staggered by margin-bottom, so each card's overlap
    into the stories band is exactly --overhang minus its margin, whatever its text */
 .shop { display: grid; gap: var(--space-sm); grid-template-columns: minmax(0, 5fr) minmax(0, 4fr); align-items: end; list-style: none; padding: 0; margin: 0; }
-.card:nth-child(2) { margin-bottom: var(--space-2xl); }
-.card:nth-child(4) { margin-bottom: var(--space-lg); }
-.card:nth-child(even) img { aspect-ratio: 1; border-radius: var(--radius-sm); }
+.shop .card:nth-child(2) { margin-bottom: var(--space-2xl); }
+.shop .card:nth-child(4) { margin-bottom: var(--space-lg); }
+.shop .card:nth-child(even) img { aspect-ratio: 1; border-radius: var(--radius-sm); }
 @media (min-width: 60rem) {
   .shop { grid-template-columns: minmax(0, 5fr) minmax(0, 4fr) minmax(0, 5fr) minmax(0, 4fr); column-gap: var(--space-md); }
   /* overlaps into the band: 4.5rem · 2rem · 7rem · 3.5rem */
-  .card:nth-child(1) { margin-bottom: 2.5rem; }
-  .card:nth-child(2) { margin-bottom: 5rem; }
-  .card:nth-child(3) { margin-bottom: 0; }
-  .card:nth-child(4) { margin-bottom: 3.5rem; }
+  .shop .card:nth-child(1) { margin-bottom: 2.5rem; }
+  .shop .card:nth-child(2) { margin-bottom: 5rem; }
+  .shop .card:nth-child(3) { margin-bottom: 0; }
+  .shop .card:nth-child(4) { margin-bottom: 3.5rem; }
 }
 .card {
   position: relative;
@@ -215,9 +215,9 @@ main { --overhang: 3rem; } /* on main: both the shop and the stories band read i
   padding: var(--space-xs);
   transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
 }
-.card:nth-child(2) { background: var(--color-pool); }
-.card:nth-child(3) { background: var(--color-sun); }
-.card:nth-child(4) { background: var(--color-paper-2); }
+.card:nth-child(4n+2) { background: var(--color-pool); }
+.card:nth-child(4n+3) { background: var(--color-sun); }
+.card:nth-child(4n) { background: var(--color-paper-2); }
 .card { box-shadow: 0 0 0 6px var(--color-paper); }
 .card:hover, .card:focus-within { transform: translateY(-3px); box-shadow: 0 0 0 6px var(--color-paper), 0 12px 24px -14px var(--color-shadow); }
 .card img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
@@ -240,17 +240,17 @@ main { --overhang: 3rem; } /* on main: both the shop and the stories band read i
 .story { position: relative; display: grid; gap: var(--space-sm); align-content: start; }
 .story img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--radius-md); }
 .story--lead img { aspect-ratio: 4 / 3; }
-.story h3 { font-size: 2.1rem; }
-.story--lead h3 { font-size: clamp(2.5rem, 1.8rem + 2vw, 3.5rem); }
-.story h3 a { text-decoration: none; background: linear-gradient(var(--color-sun), var(--color-sun)) no-repeat 0 88% / 0 0.35em; transition: background-size var(--dur-base) var(--ease-out); }
+.story :is(h2, h3) { font-size: 2.1rem; }
+.story--lead :is(h2, h3) { font-size: clamp(2.5rem, 1.8rem + 2vw, 3.5rem); }
+.story :is(h2, h3) a { text-decoration: none; background: linear-gradient(var(--color-sun), var(--color-sun)) no-repeat 0 88% / 0 0.35em; transition: background-size var(--dur-base) var(--ease-out); }
 .story:hover h3 a { background-size: 100% 0.35em; }
-.story h3 a::after { content: ""; position: absolute; inset: 0; }
+.story :is(h2, h3) a::after { content: ""; position: absolute; inset: 0; }
 .story p { margin: 0; color: var(--color-ink-2); max-width: 52ch; }
 @media (min-width: 60rem) {
   /* side stories: the picture stretches to half the lead's height, so the column has no dead gaps */
   .story:not(.story--lead) { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto 1fr; column-gap: var(--space-md); }
   .story:not(.story--lead) img { grid-row: 1 / 3; height: 100%; aspect-ratio: auto; min-height: 12rem; }
-  .story:not(.story--lead) h3 { align-self: end; }
+  .story:not(.story--lead) :is(h2, h3) { align-self: end; }
 }
 
 /* ---------- categories on breeze block ---------- */
@@ -312,6 +312,107 @@ main { --overhang: 3rem; } /* on main: both the shop and the stories band read i
 .foot p { margin: var(--space-xs) 0 0; color: var(--color-muted); max-width: 44ch; }
 .foot nav { display: flex; gap: var(--space-lg); }
 .foot nav a { white-space: nowrap; }
+
+/* ---------- inner pages ---------- */
+/* inner pages skip the big masthead: the compact bar is simply always there */
+.bar--page { position: sticky; transform: none; }
+.masthead nav a[aria-current], .bar nav a[aria-current] { background-size: 100% 3px; }
+
+/* page title on a pink wall panel with the logo's sun behind it, like the homepage headline */
+.page-head {
+  position: relative; isolation: isolate; overflow: hidden;
+  background: var(--color-wall);
+  border-radius: var(--radius-md);
+  margin-block: var(--space-lg) var(--space-2xl);
+  padding: var(--space-2xl) var(--space-lg) var(--space-lg);
+}
+.page-head::before {
+  content: ""; position: absolute; z-index: -1;
+  width: clamp(9rem, 22vw, 17rem); aspect-ratio: 1; border-radius: 50%;
+  right: -2.5rem; top: -2.5rem;
+  background: var(--color-sun);
+}
+@media (min-width: 40rem) { .page-head { padding: var(--space-3xl) var(--space-xl) var(--space-xl); } }
+.page-head h1 { font-size: var(--text-display); max-width: 12em; }
+.page-head p { font-size: var(--text-lg); line-height: 1.45; color: var(--color-ink-2); max-width: 46ch; margin: var(--space-sm) 0 0; }
+.kicker { font-weight: 600; font-size: var(--text-sm); letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-accent-deep); margin: 0 0 var(--space-sm); }
+.page-head .kicker { color: var(--color-ink); }
+
+/* shop page: a plain even grid; the homepage shelf keeps its stagger */
+.filters { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-xs) var(--space-md); margin-bottom: var(--space-lg); }
+.chips a[aria-current] { background: var(--color-ink); color: var(--color-card); }
+/* phones: one swipeable row of chips instead of a wall of them */
+@media (max-width: 40rem) { .filters .chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: calc(-1 * var(--space-sm)); padding-inline: var(--space-sm); } }
+/* 2, 3 and 4 columns all divide the dozen products evenly */
+.catalog { display: grid; gap: var(--space-lg) var(--space-md); grid-template-columns: repeat(2, minmax(0, 1fr)); list-style: none; padding: 0; margin: 0 0 var(--space-3xl); }
+@media (min-width: 45rem) { .catalog { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 70rem) { .catalog { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.catalog .card img { aspect-ratio: 1; }
+/* a five-colour cycle, so no column is one solid colour at 3 or 4 across */
+.catalog .card:nth-child(5n+1) { background: var(--color-wall); }
+.catalog .card:nth-child(5n+2) { background: var(--color-pool); }
+.catalog .card:nth-child(5n+3) { background: var(--color-sun); }
+.catalog .card:nth-child(5n+4) { background: var(--color-paper-2); }
+.catalog .card:nth-child(5n)   { background: var(--color-wall-deep); }
+/* no product pages yet, so these cards are not links and should not lift like one */
+.catalog .card:hover, .catalog .card:focus-within { transform: none; box-shadow: 0 0 0 6px var(--color-paper); }
+.catalog .card:target { box-shadow: 0 0 0 6px var(--color-paper), 0 0 0 9px var(--color-accent); }
+.empty { margin: 0 0 var(--space-3xl); color: var(--color-ink-2); }
+
+/* stories page: the homepage layout, then smaller teasers for pieces to come */
+.teasers { display: grid; gap: var(--space-lg) var(--space-md); grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); list-style: none; padding: 0; margin: 0; }
+.teasers li { display: grid; gap: var(--space-xs); align-content: start; position: relative; }
+.teasers img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-md); filter: saturate(0.85); }
+.teasers h3 { font-size: 1.9rem; }
+.teasers p { margin: 0; color: var(--color-ink-2); }
+.teasers h3 a { text-decoration: none; }
+.teasers h3 a::after { content: ""; position: absolute; inset: 0; } /* whole teaser clickable */
+.teasers li:has(a):hover h3 a { text-decoration: underline; text-decoration-color: var(--color-accent-deep); }
+.teasers .tag { top: var(--space-sm); left: var(--space-sm); translate: none; }
+
+.soon { margin-top: var(--space-3xl); }
+
+/* article */
+.article-head { max-width: 50rem; margin: var(--space-2xl) auto var(--space-lg); text-align: center; }
+.article-head h1 { font-size: var(--text-display); }
+.article-head .dek { font-size: var(--text-xl); line-height: 1.35; color: var(--color-ink-2); margin: var(--space-md) auto 0; max-width: 34ch; }
+.byline { font-size: var(--text-sm); color: var(--color-muted); margin: var(--space-md) 0 0; }
+.article-hero { margin: 0 0 var(--space-2xl); }
+.article-hero img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius-md); }
+.prose { max-width: 40rem; margin-inline: auto; font-size: 1.125rem; line-height: 1.7; }
+.prose > p:first-child::first-letter {
+  float: left; font-family: var(--font-display); font-size: 5.4em; line-height: 0.8;
+  padding: 0.08em 0.1em 0 0; color: var(--color-accent-deep);
+}
+.prose h2 { font-size: var(--text-2xl); margin: var(--space-2xl) 0 var(--space-sm); }
+.prose p { margin: 0 0 var(--space-md); }
+.prose ul { padding-left: 1.2em; margin: 0 0 var(--space-md); }
+.prose li { margin-bottom: var(--space-xs); }
+.prose li::marker { color: var(--color-accent); }
+.prose figure { margin: var(--space-xl) 0; }
+.prose figure img { width: 100%; border-radius: var(--radius-md); }
+/* wide figures break out of the text column on big screens */
+@media (min-width: 60rem) { .prose figure.wide { margin-inline: -8rem; } }
+/* portrait photos sit beside the text instead of filling a whole screen */
+.prose figure.tall { max-width: 22rem; margin-inline: auto; }
+@media (min-width: 50rem) { .prose figure.tall { float: right; width: 45%; margin: var(--space-2xs) 0 var(--space-md) var(--space-lg); } }
+.prose h2 { clear: both; }
+.prose figcaption { font-size: var(--text-sm); color: var(--color-muted); margin-top: var(--space-xs); }
+.prose blockquote {
+  margin: var(--space-xl) 0; padding: var(--space-md) var(--space-lg);
+  background: var(--color-sun); border-radius: var(--radius-md);
+  font-family: var(--font-display); font-size: var(--text-2xl); line-height: 1.05;
+}
+.prose blockquote p { margin: 0; }
+.more { max-width: 50rem; margin: var(--space-3xl) auto; }
+.more .teasers { grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); } /* two cards, sharing the width */
+.about .actions { margin-top: var(--space-lg); }
+
+/* about */
+.about { display: grid; gap: var(--space-xl); align-items: start; margin-bottom: var(--space-3xl); }
+@media (min-width: 50rem) { .about { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); } }
+.about img { width: 100%; }
+.about .prose { margin: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 1ms !important; }

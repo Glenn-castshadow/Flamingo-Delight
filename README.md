@@ -2,7 +2,9 @@
 
 Sample homepage for flamingodelight.com: Palm Springs kitsch, gifts and playful content.
 
-Static page: `index.html` + `tokens.css` + `styles.css`. Preview with `python -m http.server 8141`.
+Static site, no build step: `index.html`, `shop.html`, `stories.html`, three `story-*.html` articles and `about.html`, all sharing `tokens.css` + `styles.css`. Preview with `python -m http.server 8141`.
+
+The header and footer are copied into every page. Change one, change them all (or add a build step if the page count grows). Shop filtering is `shop.html?c=<obsession>` against each card's `data-tags`.
 
 ## Artwork
 
